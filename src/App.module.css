@@ -1,0 +1,50 @@
+body{
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: rgb(0, 0, 0);
+  color:white
+}
+
+.container{
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.App{
+
+  display: flex;
+  flex-direction: column;
+}
+
+.header{
+  border-radius: 0px 0px 5px 5px;
+  padding: 15px;
+  max-width: 100%;
+  background-color:  rgba(70, 66, 77, 0.415);
+  height: auto;
+  box-shadow: inset;
+  
+}
+
+.Navbar .link{
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+  transition: all 0.5s;
+}
+.Navbar .link:hover{
+ background-color: rgba(0, 0, 0, .5);
+ border-radius: 5px;
+}
+
+
+.Navbar .pending{
+  text-decoration:none;
+  color: aqua;
+}
+
+.Navbar .active{
+  color: rgb(25, 143, 190);
+  text-decoration: none;
+}

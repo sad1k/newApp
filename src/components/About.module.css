@@ -1,0 +1,14 @@
+h1 {
+    color: #ffffff;
+    text-align: center;
+}
+
+p {
+    color: #555;
+    max-width: 800px;
+    line-height: 1.6;
+}
+
+section {
+    margin-bottom: 40px;
+}

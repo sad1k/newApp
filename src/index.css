@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.link {
+    stroke: #999;
+    stroke-opacity: 0.6;
+}
+.node {
+    fill: #ccc;
+    stroke: #fff;
+    stroke-width: 2px;
+}
