@@ -6,6 +6,7 @@ import { eulerianCycle } from "../alghoritms/eulerianCycle";
 import fordFalkerson from "../alghoritms/fordFalkerson";
 import {
   Box,
+  Button,
   Card,
   CardContent,
   Container,
@@ -18,6 +19,7 @@ import { createTheme } from "@mui/material/styles";
 import MyAlert from "./MyAlert";
 import MyAccordion from "./MyAccordion";
 import MyModal from './MyModal'
+import GraphCytoscape from "./GraphCytoscape";
 
 
 const Graphs = () => {
@@ -33,6 +35,11 @@ const Graphs = () => {
       { source: "1", target: "2", label: "20/0" }
     ],
   });
+
+
+
+  const [isAdding, setIsAdding] = useState(false);
+
 
   const graphRef = useRef(null);
 
@@ -257,6 +264,8 @@ const Graphs = () => {
     }
   };
 
+  
+
   let darkTheme = createTheme({
     palette: {
       mode: "dark",
@@ -359,6 +368,12 @@ const Graphs = () => {
       <div
         style={{ padding: "20px", margin: "30px", textAlign: "center" }}
       ></div>
+      <div>
+      
+        <Button onClick={() => setIsAddingLink(true)}>
+          Добавить ребро
+        </Button>
+      </div>
     </div>
   );
 };

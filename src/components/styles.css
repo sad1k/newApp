@@ -1,0 +1,7 @@
+.article_card{
+    flex-basis: 100%;
+}
+
+.article_card:hover{
+    box-shadow: 0px 0px 35px 0px rgba(0,0,0,0.75);
+}

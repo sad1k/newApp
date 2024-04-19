@@ -2,7 +2,7 @@ body{
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: rgb(0, 0, 0);
+  background-color:#1f1f2e;
   color:white
 }
 
@@ -25,6 +25,11 @@ body{
   height: auto;
   box-shadow: inset;
   
+}
+.Navbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .Navbar .link{
