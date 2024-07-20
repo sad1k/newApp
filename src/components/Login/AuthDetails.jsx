@@ -1,51 +1,65 @@
-import { onAuthStateChanged, signOut } from 'firebase/auth';
-import React, { useEffect, useState } from 'react';
-import { auth } from '../firebase';
-import { Button } from '@mui/material';
-import { NavLink } from 'react-router-dom';
-import s from '../../App.module.css'
-
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import React, { useEffect, useState } from "react";
+import { auth } from "../firebase";
+import { Button, Skeleton } from "@mui/material";
+import { NavLink, useNavigate } from "react-router-dom";
+import s from "../../App.module.css";
+import { useAuthContext } from "../../contexts/authContext/authContextProvider";
+import { check } from "../../http/userAPI";
 
 const AuthDetails = () => {
-    const [authUser, setAuthUser] = useState(null)
-    useEffect(() => {
-        const listen  = onAuthStateChanged(auth, (user) => {
-            if(user){
-                setAuthUser(user)
-            }else{
-                setAuthUser(null)
-            }
-        })
-        return () => {
-            listen()
-        }
-    },[])
+  const { isAuth, user, toggleSetUser, toggleIsAuth } = useAuthContext();
 
-    function useSignOut(e){
-        signOut(auth)
-        .then(() => console.log('success'))
-    }
+  const [isLoading, setLoading] = useState(true);
 
-    return (
+  const navigate = useNavigate();
+
+  const logOut = () => {
+    toggleSetUser({});
+    toggleIsAuth(false);
+  };
+
+  useEffect(() => {
+    check()
+      .then((data) => {
+        toggleIsAuth(true);
+        toggleSetUser(data);
+      })
+      .catch((error) => {
+        toggleIsAuth(false);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  if (isLoading) {
+    return <Skeleton variant="circular" width={40} height={40} />;
+  }
+
+  return (
+    <div>
+      {isAuth ? (
         <div>
-            {authUser ? 
-            <div>
-                {`Signed in as ${authUser.email}`}
-                <Button onClick={useSignOut}>Sign Out</Button>
-               
-            </div> 
-            :
-            <NavLink
-            to="/login"
-            className={({ isActive, isPending }) =>
-              isPending ? s.pending : isActive ? s.active : s.link
-            }
-          >
-            Login
-          </NavLink>
-            }
+          <Button onClick={() => navigate(`/profile/${user.id}`)}>
+            Мой профиль
+          </Button>
+          <Button onClick={() => navigate("/account")}>Настройки</Button>
+          {`${user.email.slice(0, 10)}...`}
+          <Button onClick={logOut}>Sign Out</Button>
         </div>
-    );
+      ) : (
+        <NavLink
+          to="/login"
+          className={({ isActive, isPending }) =>
+            isPending ? s.pending : isActive ? s.active : s.link
+          }
+        >
+          Login
+        </NavLink>
+      )}
+    </div>
+  );
 };
 
 export default AuthDetails;

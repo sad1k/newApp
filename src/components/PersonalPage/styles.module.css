@@ -1,0 +1,176 @@
+.page{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin: 0 auto;
+}
+.sidebar {
+    grid-area: 1 / 1 / 6 / 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-self: self-start;
+}
+.section {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    width: 75%;
+    background-color: white;
+    color: black;
+    min-height: 600px;
+    background: white;
+    border-radius: 5px;
+    margin-bottom: 50px;
+    font-size: 14px;
+}
+
+.rowTitle{
+    width: 200px;
+    padding-right: 20px;
+}
+
+.desc{
+    color: #797979;
+    width: calc(80% - 200px);
+    overflow-wrap: break-word;
+}
+
+.rightWrapper{
+    margin-left: auto;
+    text-align: right;
+}
+
+.rowWrapper{
+    width: 100%;
+    padding: 12px 0;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.content{
+    display: flex;
+    width: 100%;
+}
+
+.phoneInput{
+    display: grid;
+    grid-template-columns: 1.2fr 3fr;
+    column-gap: 5px;
+}
+
+.profile {
+    grid-area: 1 / 1 / 5 / 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+}
+.personalInfo { 
+    grid-area: 1 / 2 / 5 / 3;
+}
+
+
+.password { 
+    grid-area: 1 / 3 / 5 / 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+}
+
+.loadImage{
+    box-sizing: border-box;
+    background-color: rgba(52, 180, 219, 0.247);
+    border: 2px dashed rgb(130, 196, 235);
+    border-radius: 35px;
+    display: flex;
+    float: inline-end;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.loadImage p{
+    font-size: 10px;
+}
+
+.loadImage label{
+    padding: 5px 10px;
+    background-color: aqua;
+    border-radius: 45px;
+    color: #ffffff;
+    cursor: pointer;
+
+}
+
+.loadImageInput{
+    margin: 0;
+    padding: 0;
+    width: 0;
+    height: 0;
+    visibility: hidden;
+    
+}
+
+.loadImage {
+    transition: all 0.2s ease;
+}
+
+.loadImage p {
+    color: #ffffff;
+    margin: 1px;
+    opacity: 1;
+}
+
+.loadImage.dragging p {
+    opacity: 0.5; 
+}
+
+.personalImage img{
+    width: 200px;
+    border-radius: 55px;
+}
+
+.emptyImage{
+    width: 30vh;
+    height: 30vh;
+    border: 2px dashed rgb(174, 190, 200);
+    background-color:  #666699;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+.changeImageBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+.emptyImage p{
+    color:white
+}
+
+.bgWrapper{
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    height: 387px;
+    width: 100%;
+    overflow: hidden;
+}
+.background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-150deg, #222222 15%, #373737 70%, #3c4859 94%);
+}
+
+.container{
+    margin: 20px 70px;
+}

@@ -1,5 +1,3 @@
-import * as d3 from "d3"
-
 
 function plug(){
     return new Promise(resolve => {
@@ -111,7 +109,7 @@ export default async function fordFalkerson(graphData, setGraphData, setAlertInf
         const T = [Tinit]; // метки маршрута
         const S = new Set([init]); // множество просмотренных вершин
         if(j === init){
-            await animateTransition(d3.select(String.raw`#\3${j}  > path`), 750, 0, 'fill', 'red', d3.easePoly.exponent(2))
+            // await animateTransition(d3.select(String.raw`#\3${j}  > path`), 750, 0, 'fill', 'red', d3.easePoly.exponent(2))
             //d3.select(String.raw`#\3${j}  > path`).transition().delay(j*1000).style('fill', 'red').ease(d3.easePoly.exponent(2))
         }
         while (k !== end) { // пока не дошли до стока
@@ -136,14 +134,14 @@ export default async function fordFalkerson(graphData, setGraphData, setAlertInf
                     break; // завершаем поиск маршрутов
                 } else { // иначе, переходим к предыдущей вершине
                     T.reverse().forEach(async (mark, index) => {
-                        const selection =  d3.select(String.raw`#\3${mark[1]}  > path`)
-                        await animateTransition(selection, 750,200 + 50*(index + 1),'fill', 'green', d3.easePolyOut.exponent(2))
+                        //  const selection =  d3.select(String.raw`#\3${mark[1]}  > path`)
+                        //  await animateTransition(selection, 750,200 + 50*(index + 1),'fill', 'green', d3.easePolyOut.exponent(2))
                         //setTimeout(() => d3.select(String.raw`#\3${mark[1]}  > path`).transition().duration(750).style('fill', 'green').ease(d3.easePolyOut.exponent(2)), 1000*graphData.links.length-750 + (Math.abs(end-mark[1])*1000) + 2000)
                         console.log(mark)
                         if(mark[1] !== -1){
                             const id = String.raw`#\3${mark[2]} \,${mark[1]}`
-                            const path1 = d3.select(id)
-                            await animateTransition(path1, 750,200 + 50*(index + 1) + 50*(index+1), 'stroke','#d3d3d3', d3.easePolyOut.exponent(2))
+                            // const path1 = d3.select(id)
+                            // await animateTransition(path1, 750,200 + 50*(index + 1) + 50*(index+1), 'stroke','#d3d3d3', d3.easePolyOut.exponent(2))
                         }
                     });
                     k = T.pop()[2];
@@ -162,10 +160,10 @@ export default async function fordFalkerson(graphData, setGraphData, setAlertInf
               ]
             }))
             const id = String.raw`#\3${k} \,${j}`
-            const path = d3.select(id)
-            const te =  d3.easePoly.exponent(3);
-            await animateTransition(path, 350, 100 , 'stroke', '#4ddbff', te);
-            await animateTransition(d3.select(String.raw`#\3${j}  > path`),750, 150, 'fill', 'red', d3.easePoly.exponent(2))
+            //  const path = d3.select(id)
+            // const te =  d3.easePoly.exponent(3);
+            // await animateTransition(path, 350, 100 , 'stroke', '#4ddbff', te);
+            // await animateTransition(d3.select(String.raw`#\3${j}  > path`),750, 150, 'fill', 'red', d3.easePoly.exponent(2))
             setCards(prevCards => ({
                 cards:[...prevCards.cards, {title: `Дейcтвие №${prevCards.cards.length + 1}`, description:`Запоминаем вершину ${j}`, cycle:undefined , action: undefined}
               ]
@@ -173,17 +171,17 @@ export default async function fordFalkerson(graphData, setGraphData, setAlertInf
             S.add(j); // запоминаем вершину как просмотренную
             
             if (j === end) { // если дошди до стока
-                await animateTransition(d3.select(String.raw`#\3${end}  > path`), 750, 200, 'fill', 'green', d3.easePolyOut.exponent(2))
+                // await animateTransition(d3.select(String.raw`#\3${end}  > path`), 750, 200, 'fill', 'green', d3.easePolyOut.exponent(2))
 
                 T.reverse().forEach(async (mark, index) => {
-                    const selection =  d3.select(String.raw`#\3${mark[1]}  > path`)
-                    await animateTransition(selection, 750,200 + 50*(index + 1),'fill', 'green', d3.easePolyOut.exponent(2))
+                    // const selection =  d3.select(String.raw`#\3${mark[1]}  > path`)
+                    // await animateTransition(selection, 750,200 + 50*(index + 1),'fill', 'green', d3.easePolyOut.exponent(2))
                     //setTimeout(() => d3.select(String.raw`#\3${mark[1]}  > path`).transition().duration(750).style('fill', 'green').ease(d3.easePolyOut.exponent(2)), 1000*graphData.links.length-750 + (Math.abs(end-mark[1])*1000) + 2000)
                     console.log(mark)
                     if(mark[1] !== -1){
                         const id = String.raw`#\3${mark[2]} \,${mark[1]}`
-                        const path1 = d3.select(id)
-                        await animateTransition(path1, 750,200 + 50*(index + 1) + 50*(index+1), 'stroke','#d3d3d3', d3.easePolyOut.exponent(2))
+                        // const path1 = d3.select(id)
+                        // await animateTransition(path1, 750,200 + 50*(index + 1) + 50*(index+1), 'stroke','#d3d3d3', d3.easePolyOut.exponent(2))
                     }
                 });
 

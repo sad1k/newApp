@@ -18,7 +18,6 @@ const MyAlert = ({alertInfo, setAlertInfo}) => {
                 {alertInfo.data}
             </Alert>
             </Fade>
-           
         </div>
     );
 };

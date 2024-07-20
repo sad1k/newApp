@@ -6,9 +6,9 @@ const MyAccordion = ({title, children, ...props}) => {
     return (
         <Accordion {...props}>
             <AccordionSummary
-                 expandIcon={<ExpandMoreIcon />}
-                 aria-controls="panel1-content"
-                 id="panel1-header"
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
             >
                 {title}
             </AccordionSummary>

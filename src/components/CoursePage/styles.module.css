@@ -1,0 +1,54 @@
+.imageCourse{
+  height: 200px;
+  width: auto;
+}
+
+.content{
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px; 
+}
+
+.headerCourse{
+  background: linear-gradient(to bottom, #0099ff 0%, #1a1a1a 100%);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/* Заголовок модуля */
+.module-header {
+  font-size: 18px;
+  font-weight: bold;
+  color: #0056b3;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #007bff;
+  padding-bottom: 5px;
+}
+
+/* Стили для каждого урока */
+.lesson {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Отступ для первого урока в модуле */
+.moduleHeader .lesson:first-child {
+  margin-top: 0;
+}
+
+/* Отступ для последнего урока в модуле */
+.moduleHeader .lesson:last-child {
+  margin-bottom: 0;
+}
+
+/* Стили для hover эффекта */
+.lesson:hover {
+  border-color: #007bff;
+  background-color:  #555;
+  cursor: pointer;
+}

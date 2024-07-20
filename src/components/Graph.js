@@ -1,7 +1,5 @@
 import { useRef, useState } from "react";
-import { Graph } from "react-d3-graph";
 import Navbar from "./Navbar";
-import * as d3 from "d3";
 import { eulerianCycle } from "../alghoritms/eulerianCycle";
 import fordFalkerson from "../alghoritms/fordFalkerson";
 import {
@@ -18,7 +16,6 @@ import {
 import { createTheme } from "@mui/material/styles";
 import MyAlert from "./MyAlert";
 import MyAccordion from "./MyAccordion";
-import MyModal from './MyModal'
 import GraphCytoscape from "./GraphCytoscape";
 
 
@@ -173,12 +170,6 @@ const Graphs = () => {
     }
   };
 
-  const handleZoomChange = () => {
-    const svg = d3.select("#graph-id svg"); // Replace 'graph-id' with your graph's ID
-    const transform = d3.zoomTransform(svg.node());
-    console.log("Zoom level:", transform.k);
-    // Your logic for handling zoom
-  };
   const myConfig = {
     directed: true, // Включить ориентированные ребра
     node: {
@@ -207,8 +198,7 @@ const Graphs = () => {
     highlightDegree: 2,
     highlightOpacity: 0.2,
     nodeHoverOpacity: 0.5,
-    nodeHoverOthersOpacity: 0.1,
-    onscroll: handleZoomChange,
+    nodeHoverOthersOpacity: 0.1
   };
 
   const handleResetGraph = () => {
@@ -275,7 +265,6 @@ const Graphs = () => {
 
   return (
     <div>
-     <MyModal open={open} setOpen={setOpen} />
 
       <Navbar
         startFordFalkerson={startFordFalkerson}
@@ -302,15 +291,6 @@ const Graphs = () => {
             display: "inline",
           }}
         >
-          <Graph
-            id="graph-id"
-            data={graphData}
-            config={myConfig}
-            onClickNode={handleClickNode}
-            onClickGraph={handleClickGraph}
-            onClickLink={handleClickLink}
-            ref={graphRef}
-          />
         </div>
       </div>
       <Container sx={{ display: "flex", justifyContent: "center" }}>

@@ -2,9 +2,24 @@
 const {Comment} = require('../models/models')
 class CommentController{
     async create(req, res){
-        const {author, description} = req.body
-        const comment = await Comment.create({author, description})
-        return req.json(comment)
+        let {articleId, description} = req.body
+        articleId = +articleId
+        console.log(req.body)
+        const userId = +req.user.id
+        console.log(articleId)
+        if(!articleId || !userId || !description){
+            return res.status(400).json({error:'Все поля обязательны'})
+        }
+
+        try {
+            const comment = await Comment.create({description, userId, articleId})
+            return res.json(comment)
+        } catch (error) {
+            console.error('Error creating comment')
+            res.status(500).json({error: 'Internal server error'})
+        }
+        
+        
     }
 
     async getOne(req, res){
@@ -17,3 +32,6 @@ class CommentController{
         return res.json(comments)
     }
 }
+
+
+module.exports = new CommentController()

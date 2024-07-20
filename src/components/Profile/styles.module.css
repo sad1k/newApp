@@ -1,0 +1,86 @@
+.profileGrid{
+    display: grid;
+    grid-template-areas: "a b c" "a d d" "a e e";
+    gap: 10px;
+}
+
+.gridItem{
+    padding: 10px;
+}
+
+.profileGridItem1{
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-area: a;
+    margin: 10px;
+    background-color: rgb(40 40 40);
+}
+.profileGridItem1 div{
+    display: flex;
+    margin: 10px 0px;
+    align-items: center;
+    column-gap: 10px;
+}
+
+
+.profileGridItem2{
+    grid-area: b;
+    align-self:end;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgb(40 40 40);
+    margin: 10px;
+}
+
+.profileGridItem3{
+    grid-area: c;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgb(40 40 40);
+    margin: 10px;
+}
+
+.profileGridItem4{
+    grid-area: d;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgb(40 40 40);
+    margin: 10px;
+    padding: 20px;
+}
+
+.profileGridItem5{
+    grid-area: e;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgb(40 40 40);
+    margin: 10px;
+}
+
+.userRole{
+    background-color: antiquewhite;
+    border-radius: 5px;
+    color: black;
+    padding: 5px;
+}
+
+.creatorRole{
+    background-color: greenyellow;
+    border-radius: 5px;
+    color: white;
+    padding: 5px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+
+.adminRole{
+    background-color: rgb(255, 0, 0);
+    border-radius: 5px;
+    color: white;
+    padding: 5px;
+    font-weight: 900 ;
+}

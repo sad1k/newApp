@@ -4,7 +4,6 @@ h1 {
 }
 
 p {
-    color: #555;
     max-width: 800px;
     line-height: 1.6;
 }
@@ -12,3 +11,17 @@ p {
 section {
     margin-bottom: 40px;
 }
+
+
+.studyModule{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 1.5rem;
+    
+    padding: 20px;
+    border-radius: 20px;
+    border: gray 1px solid;
+}
+

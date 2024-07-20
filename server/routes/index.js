@@ -4,8 +4,14 @@ const router = new Router()
 
 const articleRouter = require('./articleRouter')
 const userRouter = require('./userRouter')
+const commentRouter = require('./commentRouter')
+const likeRouter = require('./likeRouter')
+const courseRouter = require('./courseRouter')
 
 router.use('/user', userRouter)
 router.use('/article', articleRouter)
+router.use('/comment', commentRouter)
+router.use('/like', likeRouter)
+router.use('/course', courseRouter)
 
 module.exports = router

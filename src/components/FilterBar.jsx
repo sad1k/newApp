@@ -17,7 +17,7 @@ const FilterBar = ({searchTerm, setSearchTerm}) => {
                     console.log(e.target.value)
                     setSearchTerm(e.target.value)
                 }
-                } id="outlined-basic" label="Искать статьи" variant="outlined" />
+                } id="outlined-basic" label="Искать курсы" variant="outlined" />
                 <Button type='submit' startIcon={<SearchIcon />} >Поиск</Button>
             </form>
             

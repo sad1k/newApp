@@ -1,16 +1,15 @@
-const {Article, ArticleInfo} = require('../models/models')
+const {Article} = require('../models/models')
 const ApiError = require('../error/ApiError')
 class ArticleController{
     async create(req, res, next){
         try{
-            const {title, description, svg_interactivity, articleId} = req.body
-
-            const articleInfo = await ArticleInfo.create({title, description, svg_interactivity, articleId})
+            const {title, description, svg_interactivity, courseId} = req.body
+            const userId = req.user.id
+            const articleInfo = await Article.create({title, description, svg_interactivity, userId, courseId})
             return res.json(articleInfo)
         }catch(e){
             next(ApiError.badRequest(e.message))
         }
-      
     }
 
     async getAll(req, res){
