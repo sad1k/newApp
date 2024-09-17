@@ -1,6 +1,7 @@
 const sequelize = require('../db')
 const {DataTypes} = require('sequelize')
 
+
 const User = sequelize.define( 'user',
     {
         id:{type:DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
@@ -76,7 +77,7 @@ const Lesson = sequelize.define('lesson', {
 const TestCourse = sequelize.define('testCourse', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false},
-    description: {type: DataTypes.STRING, allowNull: false},
+    description: {type: DataTypes.TEXT, allowNull: false},
     answers: {type: DataTypes.STRING, allowNull: false}
 })
 
@@ -103,8 +104,8 @@ Rating.belongsTo(Course)
 Module.hasMany(Lesson)
 Lesson.belongsTo(Module)
 
-Module.hasMany(TestCourse)
-TestCourse.belongsTo(Module)
+Module.hasMany(TestCourse, { as: 'tests', foreignKey: 'moduleId' });
+TestCourse.belongsTo(Module, { foreignKey: 'moduleId' });
 
 
 

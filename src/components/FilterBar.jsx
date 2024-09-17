@@ -12,14 +12,14 @@ const FilterBar = ({searchTerm, setSearchTerm}) => {
 
     return (
         <div>
-            <form style={{display:'flex', justifyContent:'center', columnGap:'10px'}} >
+            <div style={{display:'flex', justifyContent:'center', columnGap:'10px'}} >
                 <TextField value={searchTerm} onChange={(e) =>  {
                     console.log(e.target.value)
                     setSearchTerm(e.target.value)
                 }
                 } id="outlined-basic" label="Искать курсы" variant="outlined" />
-                <Button type='submit' startIcon={<SearchIcon />} >Поиск</Button>
-            </form>
+                <Button startIcon={<SearchIcon />} >Поиск</Button>
+            </div>
             
         </div>
     );

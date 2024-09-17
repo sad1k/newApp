@@ -152,24 +152,9 @@ class UserController {
     if(!id || !Number.isInteger(id)){
       id = req.user.id;
     }
-    console.log(req)
     try {
       const user = await User.findOne({
         where: { id },
-        include: [
-          {
-            model: Like, // Replace 'Like' with your actual Like model
-            as: "likes", // Ensure this alias matches the one defined in your model associations
-          },
-          {
-            model: Comment, // Replace 'Article' with your actual Article model
-            as: "comments", // Ensure this alias matches the one defined in your model associations
-          },
-          {
-            model: Article, // Replace 'Article' with your actual Article model
-            as: "articles", // Ensure this alias matches the one defined in your model associations
-          },
-        ],
       });
       console.log(user);
       if (!user) {

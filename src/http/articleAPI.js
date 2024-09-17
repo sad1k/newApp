@@ -16,3 +16,5 @@ export const fetchArticles = async () => {
     const {data} = await $host.get(`api/article/`)
     return data
 }
+
+

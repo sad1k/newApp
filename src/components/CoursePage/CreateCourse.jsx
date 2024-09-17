@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import Markdown from "react-markdown";
 import "./coursecreator.css";
 import rehypeRaw from "rehype-raw";
+import {
+  createCourse,
+  createLessonApi,
+  createModuleApi,
+} from "../../http/courseApi";
+import { ModuleSection } from "./ModuleSection";
 
 const Lesson = ({ title, content }) => (
   <div className="lesson">
@@ -46,7 +52,10 @@ const CourseCreator = () => {
   const createLesson = (index) => {
     setModules((prev) => {
       const updatedModules = [...prev];
-      updatedModules[index].lessons.push({ name: lessonName, content: courseContent });
+      updatedModules[index].lessons.push({
+        name: lessonName,
+        content: courseContent,
+      });
       return updatedModules;
     });
     setLessonName("");
@@ -55,70 +64,39 @@ const CourseCreator = () => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setImage(reader.result); // Здесь сохраняем файл для последующей отправки
-    }
+    setImage(file);
   };
 
   const handleCreateCourse = async () => {
-    const url = "http://localhost:5000"
-    try {
-      // Создание курса
-      const formData = new FormData();
-      formData.append("title", courseTitle);
-      formData.append("description", courseDescription);
-      formData.append("img", image); // Добавляем картинку
 
-      const courseResponse = await fetch(url + "/api/createCourse/courses", {
-        method: "POST",
-        body: formData,
-      });
+    // Создание курса
+    const formData = new FormData();
+    formData.append("title", courseTitle);
+    formData.append("description", courseDescription);
+    formData.append("img", image); // Добавляем картинку
+    let courseResponse;
 
-      if (!courseResponse.ok) {
-        throw new Error("Не удалось создать курс");
-      }
+    courseResponse = await createCourse(formData);
 
-      const courseData = await courseResponse.json();
-      const courseId = courseData.id;
+    const courseData = courseResponse
+    const courseId = courseData.id;
 
-      // Создание модулей и уроков
-      for (const module of modules) {
-        // Создаем модуль
-        const moduleResponse = await fetch(`${url}/api/courses/${courseId}/modules`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ name: module.name }),
-        });
-
-        if (!moduleResponse.ok) {
-          throw new Error("Не удалось создать модуль");
-        }
-
-        const moduleData = await moduleResponse.json();
+    // Создание модулей и уроков
+    for (const module of modules) {
+      try {
+        const moduleResponse = await createModuleApi(courseId, module.name);
+        const moduleData = moduleResponse;
         const moduleId = moduleData.id;
 
-        // Создаем уроки для каждого модуля
         for (const lesson of module.lessons) {
-          await fetch(`${url}/api/modules/${moduleId}/lessons`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ name: lesson.name, content: lesson.content }),
-          });
+          await createLessonApi(moduleId, lesson.name, lesson.content);
         }
+      } catch (error) {
+        alert("Ошибка в создании модуля");
       }
-
-      alert("Курс успешно создан!");
-
-    } catch (error) {
-      console.error(error);
-      alert("Ошибка при создании курса");
     }
+
+    alert("Курс успешно создан!");
   };
 
   return (
@@ -156,30 +134,7 @@ const CourseCreator = () => {
       </div>
       <div className="course-content">
         {modules.map((module, index) => (
-          <div key={index} className="module">
-            <h3>{module.name}</h3>
-            <div className="form-group">
-              <label htmlFor={`lesson-title-${index}`}>Название урока:</label>
-              <input
-                type="text"
-                id={`lesson-title-${index}`}
-                value={lessonName}
-                onChange={handleLessonName}
-              />
-              <textarea
-                className="lesson-content"
-                id={`lesson-content-${index}`}
-                value={courseContent}
-                onChange={handleContentChange}
-              />
-              <button onClick={() => createLesson(index)}>Создать урок</button>
-            </div>
-            <div className="lessons">
-              {module.lessons.map((lesson, lessonIndex) => (
-                <Lesson key={lessonIndex} title={lesson.name} content={lesson.content} />
-              ))}
-            </div>
-          </div>
+          <ModuleSection key={index} index={index} module={module} createLesson={createLesson} handleLessonName={handleLessonName} handleContentChange={handleContentChange} />
         ))}
       </div>
       <h2>Предпросмотр</h2>

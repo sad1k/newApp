@@ -11,6 +11,7 @@ import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import StarIcon from "@mui/icons-material/Star";
 import { useParams } from "react-router-dom";
 import { getProfile } from "../../http/userAPI";
+import { fetchCourses } from "../../http/courseApi";
 
 function getClassName(role){
   if(!role){
@@ -34,6 +35,7 @@ const Profile = (props) => {
   const { id } = useParams();
   const { user, toggleSetUser } = useAuthContext();
   const [extendedUser, setExtendedUser] = useState(null)
+  const [courses, setCourses] = useState([]);
   const [avatar, setAvatar] = useState(null);
   useEffect(() => {
     if (user) {
@@ -46,6 +48,10 @@ const Profile = (props) => {
   }, []);
 
 
+  useEffect(() => {
+    fetchCourses().then(data => setCourses(data))
+  }, [])
+
 
   return (
     <div className={s.profileGrid}>
@@ -53,7 +59,7 @@ const Profile = (props) => {
         <ProfileImage avatar={avatar} />
         Ваша роль
         <div className={getClassName(user.role)}>
-          {user && user.role}
+          {user && user?.role && 'user'}
         </div>
         <Button startIcon={<EditIcon />} variant="contained" color="success">
           Изменить настройки
@@ -73,17 +79,22 @@ const Profile = (props) => {
         </div>
       </div>
       <div className={s.profileGridItem2 + " " + s.gridItem }>
-        <h1>Nickname: misha.kirillov</h1>
+        <h1>Nickname: {user && user.email}</h1>
       </div>
       <div className={s.profileGridItem3 + " " + s.gridItem}>
         <h2>Твой прогресс: <span style={{color:'lightgreen'}}>A+</span></h2>
       </div>
       <div className={s.profileGridItem4 + " " + s.gridItem + " " + s.center}>
         <h2>Активность за последний год</h2>
-        {user && <ProfileContributeBar id={id}/>}
+        {user && <ProfileContributeBar  id={id}/>}
       </div>
       <div className={s.profileGridItem5 + " " + s.gridItem}>
         <h2>Пройденные курсы</h2>
+        <div>
+          {courses && courses.map((course) => (
+            <h1 key={course.id}>{course.title}</h1>
+          ))}
+        </div>
       </div>
     </div>
   );

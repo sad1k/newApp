@@ -23,6 +23,7 @@ import CoursePage from "./components/CoursePage/CoursePage";
 import { Test } from "./components/Test/Test";
 import CourseCreator from "./components/CoursePage/CreateCourse";
 import CourseContent from "./components/CoursePage/LessonPage";
+import CreateTestPage from "./components/CoursePage/CreateTestPage";
 
 
 const darkTheme = createTheme({
@@ -52,8 +53,9 @@ root.render(
             <Route path="/coursecard" element={<CourseCard />} />
             <Route path="/graph-theory" element={<CourseTheory />} />
             <Route path="/course/:id" element={<CoursePage />} />
-            <Route path="/test" element={<Test />} />
-            <Route path="/lesson" element={<CourseContent />} />
+            <Route path="/tests/:id" element={<Test />} />
+            <Route path="/lesson/:id" element={<CourseContent />} />
+            <Route path="/create-test" element={<CreateTestPage />} />
           </Routes>
         </AuthContextProvider>
         </GoogleOAuthProvider>

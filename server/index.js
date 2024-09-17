@@ -14,7 +14,9 @@ console.log(PORT)
 
 app.use(cors())
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 app.use('/avatars', express.static(path.join(__dirname, 'avatars')))
+app.use('/courses', express.static(path.join(__dirname, 'courses')))
 app.use('/api', router)
 
 app.use(errorHandler)

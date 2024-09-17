@@ -4,10 +4,11 @@ import { MySwiper } from "./Swiper";
 import { Button, styled } from "@mui/material";
 import { orange, purple } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../contexts/authContext/authContextProvider";
 
 const About = () => {
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
+  const {isAuth} = useAuthContext()
   const OrangeButton = styled(Button)(({ theme }) => ({
     padding: "20px",
     width: "30%",
@@ -36,7 +37,18 @@ const About = () => {
               Зарегистрируйтесь сейчас и сделайте первый шаг к своему успеху!
             </p>
           </p>
-          <OrangeButton variant="contained" onClick={() => navigate('/register')}>Начать обучение</OrangeButton>
+          <OrangeButton
+            variant="contained"
+            onClick={() => {
+              if(isAuth){
+                navigate('/course');
+              }else{
+                navigate("/register");
+              }
+            }}
+          >
+            Начать обучение
+          </OrangeButton>
         </div>
       </header>
       <div>
