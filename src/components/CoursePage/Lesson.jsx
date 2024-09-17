@@ -1,14 +1,13 @@
 import React from 'react';
 import s from './styles.module.css'
 
-const Lesson = ({name}) => {
+const Lesson = ({ title, completed, onClick }) => {
   return (
-    <div className={s.lesson}>
-      <h1>
-        {name}
-      </h1>
+    <div className={`${s.lesson} ${completed ? s.completed : ''}`} onClick={onClick}>
+      {title}
     </div>
   );
 };
 
 export default Lesson;
+

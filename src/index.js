@@ -20,6 +20,10 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import 'overlayscrollbars/overlayscrollbars.css';
 import CourseTheory from "./components/Course/CourseTheory";
 import CoursePage from "./components/CoursePage/CoursePage";
+import { Test } from "./components/Test/Test";
+import CourseCreator from "./components/CoursePage/CreateCourse";
+import CourseContent from "./components/CoursePage/LessonPage";
+
 
 const darkTheme = createTheme({
   palette: {
@@ -38,7 +42,7 @@ root.render(
           <Routes>
             <Route path="/euleriancycle" />
             <Route path="/course" element={<MainPage />} />
-            {/* <Route path="/create-course" element={<CreateCourse />} /> */}
+            <Route path="/create-course" element={<CourseCreator />} />
             <Route path="/" element={<App />} />
             <Route path="/login" element={<Login isRegister={false} />} />
             <Route path="/register" element={<Login isRegister={true} />} />
@@ -48,6 +52,8 @@ root.render(
             <Route path="/coursecard" element={<CourseCard />} />
             <Route path="/graph-theory" element={<CourseTheory />} />
             <Route path="/course/:id" element={<CoursePage />} />
+            <Route path="/test" element={<Test />} />
+            <Route path="/lesson" element={<CourseContent />} />
           </Routes>
         </AuthContextProvider>
         </GoogleOAuthProvider>

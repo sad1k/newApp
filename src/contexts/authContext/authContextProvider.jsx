@@ -22,15 +22,15 @@ export function useCreateAuthContext(props){
 
     const toggleIsAuth = useCallback((bool) => {
         setIsAuth(auth => bool)
-    })
+    }, [])
 
     const toggleSetUser = useCallback((user) => {
         setUser(() => user)
-    })
+    }, [])
 
     const toggleSetArticles = useCallback((articles) => {
         setArticles(articles)
-    })
+    }, [])
 
 
 

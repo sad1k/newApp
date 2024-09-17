@@ -61,24 +61,24 @@ const Profile = (props) => {
         <div className={s.innerProfileGridItem}>Обо мне:</div>
         <div className={s.innerProfileGridItem}>
           <StarIcon />
-          Репутация:
+          Репутация: 0
         </div>
         <div className={s.innerProfileGridItem}>
           <ChatBubbleIcon color="secondary" />
-          Комментариев: {extendedUser && extendedUser.comments.length}
+          Комментариев: {0 && extendedUser && extendedUser.comments.length}
         </div>
         <div className={s.innerProfileGridItem}>
           <VisibilityIcon variant="outlined" color="primary" />
-          Просмотры:
+          Просмотры: 0
         </div>
       </div>
-      <div className={s.profileGridItem2 + " " + s.gridItem}>
-        <h2>{user && user.email}</h2>
+      <div className={s.profileGridItem2 + " " + s.gridItem }>
+        <h1>Nickname: misha.kirillov</h1>
       </div>
       <div className={s.profileGridItem3 + " " + s.gridItem}>
-        <h2>Твой прогресс:</h2>
+        <h2>Твой прогресс: <span style={{color:'lightgreen'}}>A+</span></h2>
       </div>
-      <div className={s.profileGridItem4 + " " + s.gridItem}>
+      <div className={s.profileGridItem4 + " " + s.gridItem + " " + s.center}>
         <h2>Активность за последний год</h2>
         {user && <ProfileContributeBar id={id}/>}
       </div>

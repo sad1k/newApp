@@ -45,25 +45,7 @@ const ChangeInfoTable = () => {
     <div className={s.section}>
       <div className={s.title}>Basic Info</div>
       <div>
-        <div className={s.rowWrapper}>
-          <div className={s.content}>
-            <div className={s.rowTitle}>Name</div>
-            {isEdit ? (
-              <div>
-                <CssTextField placeholder="Name" label="Name" />
-                <div>
-                  <button>Save</button>
-                  <button>Cancel</button>
-                </div>
-              </div>
-            ) : (
-              <div className={s.desc}>Heavisde</div>
-            )}
-            <div className={s.rightWrapper}>
-              <button className={s.editButton}>Edit</button>
-            </div>
-          </div>
-        </div>
+        
 
         <div>
           <CssTextField placeholder="Surname" label="Last Name" fullWidth />

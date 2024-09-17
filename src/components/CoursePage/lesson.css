@@ -1,0 +1,81 @@
+.course-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 25%;
+  background-color: lightgray;
+  padding: 20px;
+  border-right: 1px solid #e0e0e09c;
+  overflow-y: auto;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+  font-size: 1.5em;
+  color: #343a40;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+.sidebar li h3 {
+  font-size: 1.2em;
+  color: #495057;
+}
+
+.sidebar li ul {
+  list-style: none;
+  padding-left: 20px;
+  margin-top: 5px;
+}
+
+.sidebar li ul li {
+  cursor: pointer;
+  padding: 5px 0;
+  color: #007bff;
+  border-radius: 4px;
+}
+
+.sidebar li ul li:hover,
+.sidebar li ul li.active {
+  background-color: #e9ecef;
+  color: #0056b3;
+}
+
+.content {
+  width: 75%;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.content h2 {
+  font-size: 2em;
+  margin-top: 0;
+  color: white;
+}
+
+.markdown {
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #495057;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  color: #343a40;
+}

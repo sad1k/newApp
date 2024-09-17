@@ -74,6 +74,7 @@ function makeData(user){
 
 
 const ProfileContributeBar = ({id}) => {
+  console.log(id)
   let [myData, setData] = useState(null)
   useEffect(() => {
     getProfile(id).then((data) => {

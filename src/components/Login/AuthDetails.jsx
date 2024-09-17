@@ -37,6 +37,8 @@ const AuthDetails = () => {
     return <Skeleton variant="circular" width={40} height={40} />;
   }
 
+  console.log(user, isAuth)
+
   return (
     <div>
       {isAuth ? (

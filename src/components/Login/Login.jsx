@@ -40,7 +40,7 @@ const Login = ({ isRegister }) => {
       <Card>
         <CardContent>
           <form className={style.loginForm}>
-            <h1>{isRegister ? "Create account" : "Log in account"}</h1>
+            <h1>{isRegister ? "Создать аккаунт" : "Войти в аккаунт"}</h1>
             <Input
               value={email}
               onChange={(e) => setEmail(e.target.value)}

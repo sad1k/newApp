@@ -60,7 +60,25 @@ const Rating = sequelize.define('rating',
     }
 )
 
-const Module = sequelize.define() 
+const Module = sequelize.define('module',{
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name: {type: DataTypes.STRING, allowNull: false}
+}) 
+
+const Lesson = sequelize.define('lesson', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    name: { type: DataTypes.STRING, allowNull: false }, // Убедитесь, что это строка
+    content: { type: DataTypes.STRING, allowNull: false }, // Убедитесь, что это строка
+    completed: { type: DataTypes.BOOLEAN, defaultValue: false }
+});
+
+
+const TestCourse = sequelize.define('testCourse', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name: {type: DataTypes.STRING, allowNull: false},
+    description: {type: DataTypes.STRING, allowNull: false},
+    answers: {type: DataTypes.STRING, allowNull: false}
+})
 
 // TODO: СДЕЛАТЬ МОДЕЛЬ КУРСА С АРТИКЛЯМИ, сделать роуты и контроллеры для курсов
 
@@ -76,26 +94,17 @@ Rating.belongsTo(User)
 User.hasMany(Course)
 Course.belongsTo(User)
 
-Course.hasMany(Article)
-Article.belongsTo(Course)
+Course.hasMany(Module)
+Module.belongsTo(Course)
 
 Course.hasMany(Rating)
 Rating.belongsTo(Course)
 
-User.hasMany(Like)
-Like.belongsTo(User)
+Module.hasMany(Lesson)
+Lesson.belongsTo(Module)
 
-
-Article.hasMany(Comment)
-Comment.belongsTo(Article)
-
-Article.hasMany(Like)
-Like.belongsTo(Article)
-
-
-Comment.hasMany(Like)
-Like.belongsTo(Comment)
-
+Module.hasMany(TestCourse)
+TestCourse.belongsTo(Module)
 
 
 
@@ -106,5 +115,8 @@ module.exports = {
     Comment,
     Like,
     Course,
-    Rating
+    Rating,
+    Module,
+    Lesson,
+    TestCourse
 }

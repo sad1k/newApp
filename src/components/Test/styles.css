@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+
+}
+
+.testPage {
+    border-radius: 5px;
+    margin: 20px auto;
+    padding: 20px;
+    width: 80%;
+    border-width: 2px;
+    border: #fff 2px solid;
+    border-color: gainsboro;
+    color: white;
+}
+
+h1 {
+    color: #fff;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+input[type="radio"],
+input[type="text"] {
+    margin-right: 10px;
+}
+
+
+.correct {
+    color: green;
+    margin-left: 10px;
+    font-weight: bold;
+  }
+  
+  .incorrect {
+    color: red;
+    margin-left: 10px;
+    font-weight: bold;
+  }

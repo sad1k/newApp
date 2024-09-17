@@ -14,12 +14,65 @@ const CoursePage = () => {
     });
   }, [id]);
 
-  const modules = [{name: 'Что такое база данных?', lessons: ['Основные понятия', 'Типы баз данных']}, 
- {name: 'Знакомство с реляционными базами данных', lessons: ['Реляционная модель данных', 'Основные принципы нормализации']},
- {name: 'Установка и настройка PostgreSQL', lessons: ['Установка PostgreSQL на различных платформах (Windows, macOS, Linux)', 'Первоначальная настройка и запуск сервера']},
- {name: 'Инструменты для работы с PostgreSQL', lessons: ['Командная строка psql', 'GUI-интерфейсы (pgAdmin, DBeaver)']}
+  const [modules, setModules] = useState([
+    {
+      id: 1,
+      moduleTitle: 'Модуль 1: Введение в базы данных',
+      lessons: [
+        { id: 1, title: 'Урок 1.1: Что такое базы данных?', completed: false },
+        { id: 2, title: 'Урок 1.2: История баз данных', completed: false },
+      ],
+      tests: [
+        { id: 1, title: 'Тест 1.1: Проверка знаний', completed: false },
+      ],
+    },
+    {
+      id: 2,
+      moduleTitle: 'Модуль 2: Реляционные базы данных',
+      lessons: [
+        { id: 3, title: 'Урок 2.1: Введение в реляционные базы данных', completed: false },
+        { id: 4, title: 'Урок 2.2: SQL и его основы', completed: false },
+        { id: 5, title: 'Урок 2.3: Нормализация данных', completed: false },
+      ],
+      tests: [
+        { id: 2, title: 'Тест 2.1: Проверка знаний', completed: false },
+      ],
+    },
+    {
+      id: 3,
+      moduleTitle: 'Модуль 3: Нереляционные базы данных',
+      lessons: [
+        { id: 6, title: 'Урок 3.1: Введение в нереляционные базы данных', completed: false },
+        { id: 7, title: 'Урок 3.2: Типы нереляционных баз данных', completed: false },
+        { id: 8, title: 'Урок 3.3: Примеры использования', completed: false },
+      ],
+      tests: [
+        { id: 3, title: 'Тест 3.1: Проверка знаний', completed: false },
+      ],
+    },
+  ]);
 
-]
+  const handleTestClick = (testId) => {
+    setModules((prevData) =>
+      prevData.map((module) => ({
+        ...module,
+        tests: module.tests.map((test) =>
+          test.id === testId ? { ...test, completed: !test.completed } : test
+        ),
+      }))
+    );
+  };
+
+  const handleLessonClick = (lessonId) => {
+    setModules((prevData) =>
+      prevData.map((module) => ({
+        ...module,
+        lessons: module.lessons.map((lesson) =>
+          lesson.id === lessonId ? { ...lesson, completed: !lesson.completed } : lesson
+        ),
+      }))
+    );
+  };
 
   return (
     <>
@@ -42,7 +95,7 @@ const CoursePage = () => {
           </div>
           <div className={s.content}>
           {
-            modules.map((module) => <Module name={module.name} lessons={module.lessons} />)
+            modules.map((module) => <Module onClickLesson={handleLessonClick} onClickTest={handleTestClick} name={module.moduleTitle} lessons={module.lessons} tests={module.tests} />)
           }
           </div>
         </div>

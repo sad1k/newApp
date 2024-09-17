@@ -10,6 +10,20 @@
   border-radius: 10px; 
 }
 
+.smallLesson{
+  border: 1px solid #ccc;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.smallLesson:hover{
+  border-color: #007bff;
+  background-color:  #555;
+  cursor: pointer;
+}
+
 .headerCourse{
   background: linear-gradient(to bottom, #0099ff 0%, #1a1a1a 100%);
   padding: 20px;
@@ -51,4 +65,9 @@
   border-color: #007bff;
   background-color:  #555;
   cursor: pointer;
+}
+
+
+.lesson.completed {
+  background-color: rgba(145, 255, 0, 0.116);
 }
